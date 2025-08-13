@@ -63,3 +63,13 @@ body {
 .bb-list li { margin:.4rem 0; }
 
 .btn-icon { line-height:1; padding:.35rem .6rem; }
+
+/* mobile polish */
+@media (max-width: 992px) {
+  .bb-card { padding: 14px 16px; border-radius: 12px; }
+}
+@media (max-width: 576px) {
+  .bb-badges { flex-wrap: wrap; gap: .4rem; }
+  .bb-steps li, .bb-list li { margin: .35rem 0; }
+  h2 { font-size: 1.5rem; }
+}

@@ -23,7 +23,6 @@ C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug
 C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\scopedcss\bundle\BuildAndBuy.Web.styles.css
 C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\scopedcss\projectbundle\BuildAndBuy.Web.bundle.scp.css
-C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\compressed\f519kth9ny-bp5z554emh.gz
 C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\compressed\f0vu64ltiu-61n19gt1b8.gz
 C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\compressed\rjflv2riwa-xtxxf3hu2r.gz
 C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\compressed\0748gg7zc0-bqjiyaj88i.gz
@@ -96,3 +95,4 @@ C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug
 C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\BuildAndBuy.Web.pdb
 C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\BuildAndBuy.Web.genruntimeconfig.cache
 C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\ref\BuildAndBuy.Web.dll
+C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\compressed\f519kth9ny-4e7x5bylxi.gz

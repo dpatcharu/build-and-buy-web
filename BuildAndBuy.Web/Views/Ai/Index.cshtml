@@ -29,19 +29,28 @@
         </div>
 
         @Html.AntiForgeryToken()
+
+        <!-- Button with spinner -->
         <button id="bb-generate" type="submit" class="btn btn-primary mt-2">
-            Get Suggestions
+            <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+            <span class="bb-btn-text">Get Suggestions</span>
         </button>
+
+        <!-- live region for screen readers -->
+        <div class="visually-hidden" aria-live="polite" id="bb-live"></div>
     </form>
 </div>
 
 @section Scripts {
 <script>
 (function () {
-  const form = document.getElementById('bb-ai-form');
-  const btn  = document.getElementById('bb-generate');
-  const ta   = document.getElementById('bb-prompt');
-  const count= document.getElementById('bb-count');
+  const form  = document.getElementById('bb-ai-form');
+  const btn   = document.getElementById('bb-generate');
+  const spin  = btn.querySelector('.spinner-border');
+  const text  = btn.querySelector('.bb-btn-text');
+  const ta    = document.getElementById('bb-prompt');
+  const count = document.getElementById('bb-count');
+  const live  = document.getElementById('bb-live');
 
   // chips fill the textarea
   document.querySelectorAll('.bb-chip').forEach(chip => {
@@ -52,34 +61,35 @@
     });
   });
 
-  // simple character counter
+  // character counter
   const updateCount = () => { count.textContent = ta.value.length; };
   ta.addEventListener('input', updateCount); updateCount();
 
-  // loading state on submit
-  form.addEventListener('submit', function () {
+  // submit loading state
+  form.addEventListener('submit', function (e) {
     if (!ta.value.trim()) {
+      e.preventDefault();
       ta.focus();
-      event.preventDefault();
       return;
     }
     btn.disabled = true;
-    btn.dataset.orig = btn.textContent;
-    btn.textContent = 'Generating…';
+    spin.classList.remove('d-none');
+    text.textContent = 'Generating…';
+    live.textContent = 'Generating suggestions…';
   });
 
-  // optional: restore button if user navigates back
+  // restore state if user navigates back
   window.addEventListener('pageshow', function () {
-    if (btn.disabled) {
-      btn.disabled = false;
-      btn.textContent = btn.dataset.orig || 'Get Suggestions';
-    }
+    btn.disabled = false;
+    spin.classList.add('d-none');
+    text.textContent = 'Get Suggestions';
+    live.textContent = '';
   });
 })();
 </script>
 }
 
 <style>
-/* tiny helpers; keep in Index view for now */
+/* tiny helpers */
 .bb-chip { border-radius: 999px; }
 </style>
