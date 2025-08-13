@@ -1,0 +1,46 @@
+name: Auto-add issues to Project 5
+
+on:
+  issues:
+    types: [opened, reopened, edited]
+
+permissions:
+  contents: read
+
+jobs:
+  add_to_project:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      OWNER: dpatcharu
+      PROJECT_NUMBER: 5
+      STATUS_NAME: Status
+      STATUS_VALUE: To do
+    steps:
+      - name: Add issue to Project
+        run: |
+          set -e
+          # Add issue to project
+          gh project item-add "$PROJECT_NUMBER" --owner "$OWNER" --url "${{ github.event.issue.html_url }}"
+
+          # Get field ID for Status
+          fld_json=$(gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json)
+          fld_id=$(echo "$fld_json" | jq -r '.[] | select(.name=="'"$STATUS_NAME"'") | .id')
+          if [ -z "$fld_id" ] || [ "$fld_id" = "null" ]; then
+            echo "Status field not found; creating it..."
+            gh project field-create "$PROJECT_NUMBER" --owner "$OWNER" --name "$STATUS_NAME" --data-type SINGLE_SELECT --single-select-options "To do,In progress,Done" >/dev/null
+            fld_json=$(gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json)
+            fld_id=$(echo "$fld_json" | jq -r '.[] | select(.name=="'"$STATUS_NAME"'") | .id')
+          fi
+
+          # Find the project item for this issue
+          items=$(gh project item-list "$PROJECT_NUMBER" --owner "$OWNER" --format json)
+          item_id=$(echo "$items" | jq -r --arg url "${{ github.event.issue.html_url }}" '.[] | select(.content.url==$url) | .id')
+
+          # Set Status = To do
+          if [ -n "$item_id" ] && [ -n "$fld_id" ]; then
+            gh project item-edit --owner "$OWNER" --id "$item_id" --field-id "$fld_id" --single-select-option "$STATUS_VALUE" >/dev/null
+            echo "Set Status='$STATUS_VALUE' on item $item_id"
+          else
+            echo "Could not resolve item_id or fld_id; skipping status set."
+          fi
