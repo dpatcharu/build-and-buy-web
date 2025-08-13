@@ -1,0 +1,21 @@
+@model BuildAndBuy.Web.Models.AiRequestDto
+@{
+    ViewData["Title"] = "AI Assistant";
+}
+
+<h2>AI Idea Assistant</h2>
+
+<form asp-action="Index" method="post">
+    <div class="form-group">
+        <label for="Prompt">What do you want to build or buy?</label>
+        <textarea asp-for="Prompt" class="form-control" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Get Suggestions</button>
+</form>
+
+@if (ViewBag.AiResult != null)
+{
+    <div class="alert alert-info mt-3">
+        <strong>AI Suggestion:</strong> @ViewBag.AiResult
+    </div>
+}
