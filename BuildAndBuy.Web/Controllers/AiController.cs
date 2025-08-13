@@ -6,33 +6,19 @@ namespace BuildAndBuy.Web.Controllers
 {
     public class AiController : Controller
     {
-        private readonly IAiService _aiService;
+        private readonly IAiService _ai;
 
-        public AiController(IAiService aiService)
-        {
-            _aiService = aiService;
-        }
+        public AiController(IAiService ai) { _ai = ai; }
 
         [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(AiRequestDto model)
         {
-            if (!ModelState.IsValid)
-                return View(model);
-
-            var response = await _aiService.GetAiResponseAsync(model);
+            var response = await _ai.GetAiResponseAsync(model);
             ViewBag.AiResult = response.Result;
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult Plan()
-        {
             return View();
         }
     }

@@ -1,29 +1,29 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// MVC
 builder.Services.AddControllersWithViews();
 
-// Register AI Service
-builder.Services.AddScoped<BuildAndBuy.Web.Services.Abstractions.IAiService, 
-                            BuildAndBuy.Web.Services.Implementations.AiService>();
+// Add these three lines ↓↓↓
+builder.Services.AddHttpClient();
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped<
+    BuildAndBuy.Web.Services.Abstractions.IAiService,
+    BuildAndBuy.Web.Services.Implementations.GeminiAiService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapStaticAssets();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")

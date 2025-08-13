@@ -95,3 +95,4 @@ C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug
 C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\BuildAndBuy.Web.pdb
 C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\BuildAndBuy.Web.genruntimeconfig.cache
 C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\obj\Debug\net9.0\ref\BuildAndBuy.Web.dll
+C:\Users\patch\Documents\Build & Buy\build-and-buy-web\BuildAndBuy.Web\bin\Debug\net9.0\Data\affiliate-map.json
