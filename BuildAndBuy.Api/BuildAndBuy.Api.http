@@ -1,0 +1,6 @@
+@BuildAndBuy.Api_HostAddress = http://localhost:5116
+
+GET {{BuildAndBuy.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

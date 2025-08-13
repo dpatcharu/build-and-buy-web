@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "BuildAndBuy.Web/1.0.0": {
+        "runtime": {
+          "BuildAndBuy.Web.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BuildAndBuy.Web/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
