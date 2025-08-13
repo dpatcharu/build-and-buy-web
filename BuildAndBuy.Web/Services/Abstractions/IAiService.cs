@@ -4,6 +4,6 @@ namespace BuildAndBuy.Web.Services.Abstractions
 {
     public interface IAiService
     {
-        Task<AiResponseDto> GetAiResponseAsync(AiRequestDto request);
+        Task<AiPlanDto> GeneratePlanAsync(AiPlanRequestDto request);
     }
 }

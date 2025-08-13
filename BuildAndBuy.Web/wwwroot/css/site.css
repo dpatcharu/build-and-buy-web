@@ -29,3 +29,37 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+.bb-card {
+  background: #fff;
+  border: 1px solid #e9eef5;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.05);
+}
+
+.bb-card-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px dashed #eef2f7;
+  padding-bottom:.4rem;
+  margin-bottom:1rem;
+}
+
+.bb-badges { display:flex; gap:.5rem; margin-top:.25rem; }
+.badge {
+  background:#f3f6ff;
+  border:1px solid #e3e9ff;
+  padding:.35rem .6rem;
+  border-radius:999px;
+  font-size:.92rem;
+  color:#334155;
+}
+
+.bb-steps { padding-left:1.2rem; margin: 0; }
+.bb-steps li { margin:.5rem 0; line-height:1.5; }
+.bb-list  { padding-left:1.1rem; margin: 0; }
+.bb-list li { margin:.4rem 0; }
+
+.btn-icon { line-height:1; padding:.35rem .6rem; }

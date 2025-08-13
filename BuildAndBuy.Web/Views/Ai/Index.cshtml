@@ -1,21 +1,85 @@
-@model BuildAndBuy.Web.Models.AiRequestDto
+@model BuildAndBuy.Web.Models.AiPlanRequestDto
 @{
     ViewData["Title"] = "AI Assistant";
 }
+<div class="container my-4">
+    <h2 class="mb-3">AI Idea Assistant</h2>
 
-<h2>AI Idea Assistant</h2>
+    <form id="bb-ai-form" asp-action="Index" method="post" novalidate>
+        <div class="mb-2 text-muted" style="font-size:.95rem;">
+            Describe the project in one sentence (budget, time, skill level help a lot).
+        </div>
 
-<form asp-action="Index" method="post">
-    <div class="form-group">
-        <label for="Prompt">What do you want to build or buy?</label>
-        <textarea asp-for="Prompt" class="form-control" rows="3"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary mt-2">Get Suggestions</button>
-</form>
+        <div class="mb-2 d-flex flex-wrap gap-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary bb-chip"
+                    data-example='Wall-mounted plant shelf under $25, 60 minutes, beginner.'>Plant shelf</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary bb-chip"
+                    data-example='Floating bookshelf under $40, 90 minutes, intermediate.'>Floating shelf</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary bb-chip"
+                    data-example='PVC shoe rack under $20, 45 minutes, beginner.'>PVC rack</button>
+        </div>
 
-@if (ViewBag.AiResult != null)
-{
-    <div class="alert alert-info mt-3">
-        <strong>AI Suggestion:</strong> @ViewBag.AiResult
-    </div>
+        <div class="mb-1">
+            <label class="form-label">What do you want to build or buy?</label>
+            <textarea asp-for="Prompt" id="bb-prompt" class="form-control"
+                      rows="3"
+                      placeholder="e.g., Wall-mounted plant shelf under $25, 60 minutes, beginner."
+                      maxlength="500"></textarea>
+            <div class="form-text"><span id="bb-count">0</span>/500</div>
+        </div>
+
+        @Html.AntiForgeryToken()
+        <button id="bb-generate" type="submit" class="btn btn-primary mt-2">
+            Get Suggestions
+        </button>
+    </form>
+</div>
+
+@section Scripts {
+<script>
+(function () {
+  const form = document.getElementById('bb-ai-form');
+  const btn  = document.getElementById('bb-generate');
+  const ta   = document.getElementById('bb-prompt');
+  const count= document.getElementById('bb-count');
+
+  // chips fill the textarea
+  document.querySelectorAll('.bb-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      ta.value = chip.dataset.example || '';
+      ta.dispatchEvent(new Event('input'));
+      ta.focus();
+    });
+  });
+
+  // simple character counter
+  const updateCount = () => { count.textContent = ta.value.length; };
+  ta.addEventListener('input', updateCount); updateCount();
+
+  // loading state on submit
+  form.addEventListener('submit', function () {
+    if (!ta.value.trim()) {
+      ta.focus();
+      event.preventDefault();
+      return;
+    }
+    btn.disabled = true;
+    btn.dataset.orig = btn.textContent;
+    btn.textContent = 'Generating…';
+  });
+
+  // optional: restore button if user navigates back
+  window.addEventListener('pageshow', function () {
+    if (btn.disabled) {
+      btn.disabled = false;
+      btn.textContent = btn.dataset.orig || 'Get Suggestions';
+    }
+  });
+})();
+</script>
 }
+
+<style>
+/* tiny helpers; keep in Index view for now */
+.bb-chip { border-radius: 999px; }
+</style>
