@@ -1,0 +1,7 @@
+﻿name: .NET CI (placeholder)
+on: {workflow_dispatch: {}}
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Add real CI later'
