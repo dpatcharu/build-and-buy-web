@@ -15,8 +15,11 @@ namespace BuildAndBuy.Web.Models
         public List<MaterialItemDto> Materials { get; set; } = new();
         public List<string> Safety { get; set; } = new();
 
-        // NEW: keep the original prompt for "Regenerate"
+        // Used by the "Regenerate" button
         public string? OriginalPrompt { get; set; }
+
+        // NEW: Friendly error message (null when OK)
+        public string? Error { get; set; }
     }
 
     public class MaterialItemDto

@@ -5,6 +5,14 @@
 
 <div class="container my-4">
 
+    @* NEW: friendly error message *@
+    @if (!string.IsNullOrWhiteSpace(Model.Error))
+    {
+        <div class="alert alert-warning">
+            <strong>Heads up:</strong> @Model.Error
+        </div>
+    }
+
     <div class="bb-card mb-3">
         <h2 class="mb-2">@Model.Title</h2>
 
